@@ -15,10 +15,18 @@ from textblob import TextBlob
 app = Flask(__name__)
 api = Api(app)
 
+def removeNumber(text):
+	result = re.sub(r'\d+', '', text)
+	return result
+
+def toLower(text):
+	return text.lower()
+
 class partSpeech(Resource):
 	def get(self, name):
-		text1 = """He determined to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
-		result = TextBlob(text1)
+		text1 = """He determined 5 to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
+		nuevotexto=removeNumber(text1)
+		result = TextBlob(toLower(nuevotexto))
 		return {"Hello": result.tags}
 
 class Lemma(Resource):
