@@ -49,9 +49,19 @@ class Shallow(Resource):
 
 class Normalization(Resource):
 	def get(self, name):
+		stop_words = set(stopwords.words(name))
 		text1 = """He determined to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
-		result = TextBlob(text1)
-		return {"Hello": result.tags}
+		word_tokens = word_tokenize(removeNumber(text1))
+		filtered_sentence = []
+		for w in word_tokens:
+			if w not in stop_words:
+				filtered_sentence.append(w)
+		Stem_words = []
+		ps =PorterStemmer()
+		for w in filtered_sentence:
+			rootWord=ps.stem(w)
+			Stem_words.append(rootWord)
+		return {"Hello": filtered_sentence}
 
 class Entity(Resource):
 	def get(self, name):
