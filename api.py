@@ -31,7 +31,10 @@ class Shallow(Resource):
 	def get(self, name):
 		text1 = """He determined to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
 		result = TextBlob(text1)
-		return {"Hello": result.tags}
+		reg_exp = "NP: {<DT>?<JJ>*<NN>}"
+		rp = nltk.RegexpParser(reg_exp)
+		result = rp.parse(result.tags)
+		return {"Hello": result}
 
 class Normalization(Resource):
 	def get(self, name):
