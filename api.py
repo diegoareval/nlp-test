@@ -40,7 +40,7 @@ class Lemma(Resource):
 
 class Shallow(Resource):
 	def get(self, name):
-		text1 = """He determined to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
+		text1 = """He determined to There are several types of Stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
 		result = TextBlob(text1)
 		reg_exp = "NP: {<DT>?<JJ>*<NN>}"
 		rp = nltk.RegexpParser(reg_exp)
@@ -51,7 +51,7 @@ class Normalization(Resource):
 	def get(self, name):
 		stop_words = set(stopwords.words(name))
 		text1 = """He determined to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
-		word_tokens = word_tokenize(removeNumber(text1))
+		word_tokens = word_tokenize(toLower(removeNumber(text1)))
 		filtered_sentence = []
 		for w in word_tokens:
 			if w not in stop_words:
