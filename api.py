@@ -22,6 +22,9 @@ def removeNumber(text):
 def toLower(text):
 	return text.lower()
 
+def removeCharacter(text):
+	print("por implementar por {}".format("Mike"))
+
 class partSpeech(Resource):
 	def get(self, name):
 		text1 = """He determined 5 to There are several types of stemming algorithms. 5 drop his litigation with the monastry, and relinguish his claims to the wood-cuting and fishery rihgts at once. He was the more ready to do this becuase the rights had become much less valuable, and he had indeed the vaguest idea where the wood and river in question were."""
